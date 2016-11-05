@@ -1,15 +1,15 @@
 # carnd-p2
 Project: Build a Traffic Sign Recognition Classifier - Deep Learning - Self-Driving Car Engineer Nanodegree
 
-## Addtional reqirements
+### Addtional Reqirements
 ```
 conda install -c conda-forge ipywidgets
 ```
-## Origial Project
+### Original Project
 https://github.com/udacity/traffic-signs
 
-## Useful Exercises
+### Useful Exercises
 * https://github.com/udacity/CarND-TensorFlow-Lab
 
-## References
+### References
 * https://github.com/ipython/ipywidgets
