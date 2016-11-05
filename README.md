@@ -13,3 +13,6 @@ https://github.com/udacity/traffic-signs
 
 ### References
 * https://github.com/ipython/ipywidgets
+
+### Future Work
+* http://vispy.org/
