@@ -13,6 +13,9 @@ https://github.com/udacity/traffic-signs
 
 ### References
 * https://github.com/ipython/ipywidgets
+* https://www.tensorflow.org/versions/r0.11/tutorials/mnist/pros/index.html#deep-mnist-for-experts
+* http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf
+* https://github.com/aymericdamien/TensorFlow-Examples/blob/master/notebooks/3_NeuralNetworks/convolutional_network.ipynb
 
 ### Future Work
 * http://mybinder.org/
