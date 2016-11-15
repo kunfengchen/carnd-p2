@@ -8,6 +8,12 @@ conda install -c conda-forge ipywidgets
 ### Original Project
 https://github.com/udacity/traffic-signs
 
+### Data
+Download the zip file here:
+https://d17h27t6h515a5.cloudfront.net/topher/2016/November/581faac4_traffic-signs-data/traffic-signs-data.zip
+
+And upzip the train.p and test.p into data/ directory
+
 ### Useful Exercises
 * https://github.com/udacity/CarND-TensorFlow-Lab
 
