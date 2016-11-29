@@ -23625,13 +23625,14 @@ ByIiIpKg5EBEREQS/g9YRhoz15FrMAAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Design the model using greyscale images for training to start with:</p>
+<p>Designs the model using grayscale images for training to start with:</p>
 <ol>
-<li>Make image from color to grey scale</li>
+<li>Make image from color to grayscale</li>
 <li>Normalize the range from [0, 255] to [-0.5 , 0.5]</li>
 </ol>
-<p>Greyscale should use less memory and may reduce some similar features/variances in differ colors for training.</p>
-<p>Nomalize the data will ensure quick convergence and maintain numerical stability.</p>
+<p>For the target variable, initialize bias variables to 0.1 and weights to random value from truncated normal distribution with standard deviation 0.1 and mean 0.0.</p>
+<p>Grayscale should use less memory and may reduce some similar features/variances in differ colors for training.</p>
+<p>Normalize the data will ensure quick convergence and maintain numerical stability.</p>
 
 </div>
 </div>
@@ -23729,7 +23730,7 @@ ByIiIpKg5EBEREQS/g9YRhoz15FrMAAAAABJRU5ErkJggg==
 <p>Randomly split training data into 80/20% of training and validation set.
 Uses original test data as is.</p>
 <p>Not tested yet, but also provided stratified random feature. The stratified feature is good for choosing unbalanced data.</p>
-<p>Have not generate additional data at this time. It would help to make prediton better if we have more data to cover more scenarios.</p>
+<p>Have not generate additional data at this time. It would help to make prediction better if we have more data to cover more scenarios.</p>
 
 </div>
 </div>
@@ -23784,7 +23785,7 @@ Uses original test data as is.</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;contextlib._GeneratorContextManager at 0x7fbf45df7da0&gt;</pre>
+<pre>&lt;contextlib._GeneratorContextManager at 0x7f94835ba198&gt;</pre>
 </div>
 
 </div>
@@ -23854,7 +23855,7 @@ Uses original test data as is.</p>
 <span class="n">W_fc1</span> <span class="o">=</span> <span class="n">weight_variable</span><span class="p">([</span><span class="mi">8</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">*</span> <span class="mi">64</span><span class="p">,</span> <span class="n">n_neurons</span><span class="p">])</span>
 <span class="n">b_fc1</span> <span class="o">=</span> <span class="n">bias_variable</span><span class="p">([</span><span class="n">n_neurons</span><span class="p">])</span>
 
-<span class="n">h_pool2_flat</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">h_pool2</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">*</span><span class="mi">64</span><span class="p">])</span>
+<span class="n">h_pool2_flat</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">h_pool2</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">*</span> <span class="mi">64</span><span class="p">])</span>
 <span class="n">h_fc1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">h_pool2_flat</span><span class="p">,</span> <span class="n">W_fc1</span><span class="p">)</span> <span class="o">+</span> <span class="n">b_fc1</span><span class="p">)</span>
 
 <span class="c1">## Dropout</span>
@@ -23873,6 +23874,9 @@ Uses original test data as is.</p>
 
 <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;y_ = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">y_conv</span><span class="p">))</span>
 <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;y_conv = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">y_conv</span><span class="p">))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;h_conv1 = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">h_conv1</span><span class="p">))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;h_pool1 = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">h_pool1</span><span class="p">))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;h_conv2 = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">h_conv2</span><span class="p">))</span>
 <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;h_pool2 = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">h_pool2</span><span class="p">))</span>
 <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;W_fc1 shape = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">W_fc1</span><span class="o">.</span><span class="n">get_shape</span><span class="p">()))</span>
 <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;W_fc2 shape = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">W_fc2</span><span class="o">.</span><span class="n">get_shape</span><span class="p">()))</span>
@@ -23890,6 +23894,9 @@ Uses original test data as is.</p>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>y_ = Tensor(&#34;add_3:0&#34;, shape=(?, 43), dtype=float32)
 y_conv = Tensor(&#34;add_3:0&#34;, shape=(?, 43), dtype=float32)
+h_conv1 = Tensor(&#34;Relu:0&#34;, shape=(?, 32, 32, 32), dtype=float32)
+h_pool1 = Tensor(&#34;MaxPool:0&#34;, shape=(?, 16, 16, 32), dtype=float32)
+h_conv2 = Tensor(&#34;Relu_1:0&#34;, shape=(?, 16, 16, 64), dtype=float32)
 h_pool2 = Tensor(&#34;MaxPool_1:0&#34;, shape=(?, 8, 8, 64), dtype=float32)
 W_fc1 shape = (4096, 2048)
 W_fc2 shape = (2048, 43)
@@ -23928,27 +23935,54 @@ W_fc2 shape = (2048, 43)
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The final architechture:</p>
 <ul>
-<li>Input Layer</li>
+<li>Input Layer<ul>
+<li>The size is [32, 32, 1].  1 channel for grayscale.</li>
+</ul>
+</li>
 <li>First Convolutional Layer<ul>
-<li>convolution [5, 5, 1, 32]</li>
-<li>ReLU</li>
-<li>max pooling 2x2</li>
+<li>convolution [5, 5, 1, 32].<ul>
+<li>input size 32x32x1 and output size 32x32x32</li>
+<li>5x5 kernel with 1 input depth and 32 output depth</li>
+<li>stride 1 and zero-paddings</li>
+</ul>
+</li>
+<li>ReLU layer</li>
+<li>max pooling size 2x2 and stride of 2 with zero-paddings<ul>
+<li>input size 32x32x32 and output size 16x16x32</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>Second Convolutional Layer<ul>
-<li>convolution [5, 5, 32, 64]</li>
-<li>max pooling 2x2</li>
-<li>ReLU</li>
+<li>convolution [5, 5, 32, 64].<ul>
+<li>input size 16x16x32 and output size 16x16x64</li>
+<li>5x5 kernel with 32 input depth and 64 output depth.</li>
+<li>stride 1 and zero-paddings</li>
+</ul>
+</li>
+<li>max pooling size 2x2 and stride of 2 with zero-paddings<ul>
+<li>input size 16x16x64 and output size 8x8x64</li>
+</ul>
+</li>
+<li>ReLU layer</li>
 </ul>
 </li>
 <li>Fully Connected Layer 1<ul>
-<li>2048 neurons</li>
-<li>ReLU</li>
-<li>Dropout (To reduce overfitting)</li>
+<li>8x8x64 = 4096 input neurons</li>
+<li>2048 output neurons</li>
+<li>ReLU layer</li>
+<li>Dropout layer 50% during training (To reduce overfitting)</li>
 </ul>
 </li>
-<li>Fully Connected Layer 2 </li>
+<li>Fully Connected Layer 2<ul>
+<li>2048 input neurons</li>
+<li>43 output neurons</li>
+<li>softmax cross entropy</li>
+<li>Adam optimizer</li>
 </ul>
+</li>
+</ul>
+<p><img src="p2greymodel.png" alt="Model Diagram"></p>
 
 </div>
 </div>
@@ -24022,11 +24056,11 @@ W_fc2 shape = (2048, 43)
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[ 0 21 41 ..., 41 41 41]
+<pre>[13 13 13 ..., 13 13 13]
 [16  1 38 ...,  6  7 10]
 [16  1 38 ...,  6  7 10]
 [False False False ..., False False False]
-0.0108472
+0.0354711
 </pre>
 </div>
 </div>
@@ -24090,7 +24124,7 @@ W_fc2 shape = (2048, 43)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## Actual training, can run multiple times</span>
@@ -26672,8 +26706,7 @@ TkSuQmCC
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>step 0, training accuracy 1
-validation accuracy 0.995282
+<pre>step 0, training accuracy 0.025
 </pre>
 </div>
 </div>
@@ -26687,356 +26720,357 @@ validation accuracy 0.995282
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>step 200, training accuracy 1
-step 400, training accuracy 1
-validation accuracy 0.99541
-step 600, training accuracy 1
-step 800, training accuracy 1
-step 1000, training accuracy 1
-validation accuracy 0.995282
-step 1200, training accuracy 1
-step 1400, training accuracy 1
-validation accuracy 0.995665
-step 1600, training accuracy 1
-step 1800, training accuracy 1
-step 2000, training accuracy 1
-validation accuracy 0.995537
-step 2200, training accuracy 1
-step 2400, training accuracy 1
-validation accuracy 0.995282
-step 2600, training accuracy 1
-step 2800, training accuracy 1
-step 3000, training accuracy 1
-validation accuracy 0.995537
-step 3200, training accuracy 1
-step 3400, training accuracy 1
-validation accuracy 0.996175
+<pre>validation accuracy 0.0452691
+step 200, training accuracy 0.545
+step 400, training accuracy 0.755
+validation accuracy 0.753124
+step 600, training accuracy 0.82
+step 800, training accuracy 0.83
+step 1000, training accuracy 0.89
+validation accuracy 0.875032
+step 1200, training accuracy 0.955
+step 1400, training accuracy 0.89
+validation accuracy 0.929738
+step 1600, training accuracy 0.955
+step 1800, training accuracy 0.97
+step 2000, training accuracy 0.945
+validation accuracy 0.94453
+step 2200, training accuracy 0.98
+step 2400, training accuracy 0.995
+validation accuracy 0.958302
+step 2600, training accuracy 0.985
+step 2800, training accuracy 0.985
+step 3000, training accuracy 0.985
+validation accuracy 0.969013
+step 3200, training accuracy 0.985
+step 3400, training accuracy 0.99
+validation accuracy 0.972966
 step 3600, training accuracy 1
-step 3800, training accuracy 1
+step 3800, training accuracy 0.98
 step 4000, training accuracy 1
-validation accuracy 0.99541
-step 4200, training accuracy 1
-step 4400, training accuracy 1
-validation accuracy 0.995155
+validation accuracy 0.97845
+step 4200, training accuracy 0.99
+step 4400, training accuracy 0.995
+validation accuracy 0.98151
 step 4600, training accuracy 1
-step 4800, training accuracy 1
-step 5000, training accuracy 1
-validation accuracy 0.995537
+step 4800, training accuracy 0.99
+step 5000, training accuracy 0.995
+validation accuracy 0.983933
 step 5200, training accuracy 1
-step 5400, training accuracy 1
-validation accuracy 0.995537
+step 5400, training accuracy 0.99
+validation accuracy 0.984316
 step 5600, training accuracy 1
 step 5800, training accuracy 1
 step 6000, training accuracy 1
-validation accuracy 0.995155
-step 6200, training accuracy 1
+validation accuracy 0.984443
+step 6200, training accuracy 0.995
 step 6400, training accuracy 1
-validation accuracy 0.995282
-step 6600, training accuracy 1
+validation accuracy 0.984443
+step 6600, training accuracy 0.995
 step 6800, training accuracy 1
-step 7000, training accuracy 1
-validation accuracy 0.996047
+step 7000, training accuracy 0.995
+validation accuracy 0.987248
 step 7200, training accuracy 1
 step 7400, training accuracy 1
-validation accuracy 0.995665
+validation accuracy 0.986228
 step 7600, training accuracy 1
 step 7800, training accuracy 1
 step 8000, training accuracy 1
-validation accuracy 0.99592
+validation accuracy 0.984953
 step 8200, training accuracy 1
 step 8400, training accuracy 1
-validation accuracy 0.995282
+validation accuracy 0.988524
 step 8600, training accuracy 1
 step 8800, training accuracy 1
 step 9000, training accuracy 1
-validation accuracy 0.995665
+validation accuracy 0.989161
 step 9200, training accuracy 1
 step 9400, training accuracy 1
-validation accuracy 0.995537
+validation accuracy 0.989161
 step 9600, training accuracy 1
 step 9800, training accuracy 1
 step 10000, training accuracy 1
-validation accuracy 0.995537
+validation accuracy 0.989544
 step 10200, training accuracy 1
 step 10400, training accuracy 1
-validation accuracy 0.995282
+validation accuracy 0.989289
 step 10600, training accuracy 1
 step 10800, training accuracy 1
 step 11000, training accuracy 1
-validation accuracy 0.995537
+validation accuracy 0.989034
 step 11200, training accuracy 1
 step 11400, training accuracy 1
-validation accuracy 0.99541
+validation accuracy 0.990436
 step 11600, training accuracy 1
 step 11800, training accuracy 1
 step 12000, training accuracy 1
-validation accuracy 0.994772
+validation accuracy 0.989671
 step 12200, training accuracy 1
 step 12400, training accuracy 1
-validation accuracy 0.994772
+validation accuracy 0.991202
 step 12600, training accuracy 1
 step 12800, training accuracy 1
 step 13000, training accuracy 1
-validation accuracy 0.995027
+validation accuracy 0.990054
 step 13200, training accuracy 1
 step 13400, training accuracy 1
-validation accuracy 0.9949
+validation accuracy 0.990436
 step 13600, training accuracy 1
 step 13800, training accuracy 1
 step 14000, training accuracy 1
-validation accuracy 0.994645
+validation accuracy 0.988906
 step 14200, training accuracy 1
 step 14400, training accuracy 1
-validation accuracy 0.995155
+validation accuracy 0.990819
 step 14600, training accuracy 1
 step 14800, training accuracy 1
 step 15000, training accuracy 1
-validation accuracy 0.995027
+validation accuracy 0.991967
 step 15200, training accuracy 1
 step 15400, training accuracy 1
-validation accuracy 0.995537
+validation accuracy 0.990947
 step 15600, training accuracy 1
 step 15800, training accuracy 1
 step 16000, training accuracy 1
-validation accuracy 0.995665
+validation accuracy 0.991967
 step 16200, training accuracy 1
 step 16400, training accuracy 1
-validation accuracy 0.99592
+validation accuracy 0.992094
 step 16600, training accuracy 1
 step 16800, training accuracy 1
 step 17000, training accuracy 1
-validation accuracy 0.99541
+validation accuracy 0.991329
 step 17200, training accuracy 1
 step 17400, training accuracy 1
-validation accuracy 0.995537
+validation accuracy 0.991329
 step 17600, training accuracy 1
 step 17800, training accuracy 1
 step 18000, training accuracy 1
-validation accuracy 0.9949
+validation accuracy 0.992477
 step 18200, training accuracy 1
 step 18400, training accuracy 1
-validation accuracy 0.995282
+validation accuracy 0.992604
 step 18600, training accuracy 1
 step 18800, training accuracy 1
 step 19000, training accuracy 1
-validation accuracy 0.995665
+validation accuracy 0.992477
 step 19200, training accuracy 1
 step 19400, training accuracy 1
-validation accuracy 0.995027
+validation accuracy 0.992604
 step 19600, training accuracy 1
 step 19800, training accuracy 1
 step 20000, training accuracy 1
-validation accuracy 0.994772
+validation accuracy 0.991712
 step 20200, training accuracy 1
 step 20400, training accuracy 1
-validation accuracy 0.995282
+validation accuracy 0.992732
 step 20600, training accuracy 1
 step 20800, training accuracy 1
 step 21000, training accuracy 1
-validation accuracy 0.995665
+validation accuracy 0.992604
 step 21200, training accuracy 1
 step 21400, training accuracy 1
-validation accuracy 0.995155
+validation accuracy 0.992987
 step 21600, training accuracy 1
 step 21800, training accuracy 1
 step 22000, training accuracy 1
-validation accuracy 0.995537
+validation accuracy 0.992477
 step 22200, training accuracy 1
 step 22400, training accuracy 1
-validation accuracy 0.995282
+validation accuracy 0.992477
 step 22600, training accuracy 1
 step 22800, training accuracy 1
 step 23000, training accuracy 1
-validation accuracy 0.995155
+validation accuracy 0.992222
 step 23200, training accuracy 1
 step 23400, training accuracy 1
-validation accuracy 0.9949
+validation accuracy 0.992732
 step 23600, training accuracy 1
 step 23800, training accuracy 1
 step 24000, training accuracy 1
-validation accuracy 0.995537
+validation accuracy 0.992859
 step 24200, training accuracy 1
 step 24400, training accuracy 1
-validation accuracy 0.995665
+validation accuracy 0.993879
 step 24600, training accuracy 1
 step 24800, training accuracy 1
 step 25000, training accuracy 1
-validation accuracy 0.995792
+validation accuracy 0.992732
 step 25200, training accuracy 1
 step 25400, training accuracy 1
-validation accuracy 0.99592
+validation accuracy 0.992477
 step 25600, training accuracy 1
 step 25800, training accuracy 1
 step 26000, training accuracy 1
-validation accuracy 0.995537
+validation accuracy 0.992732
 step 26200, training accuracy 1
 step 26400, training accuracy 1
-validation accuracy 0.995282
+validation accuracy 0.993114
 step 26600, training accuracy 1
 step 26800, training accuracy 1
 step 27000, training accuracy 1
-validation accuracy 0.99592
+validation accuracy 0.992349
 step 27200, training accuracy 1
 step 27400, training accuracy 1
-validation accuracy 0.995282
+validation accuracy 0.993752
 step 27600, training accuracy 1
 step 27800, training accuracy 1
 step 28000, training accuracy 1
-validation accuracy 0.9949
+validation accuracy 0.993114
 step 28200, training accuracy 1
 step 28400, training accuracy 1
-validation accuracy 0.9949
+validation accuracy 0.994134
 step 28600, training accuracy 1
 step 28800, training accuracy 1
 step 29000, training accuracy 1
-validation accuracy 0.994772
+validation accuracy 0.993242
 step 29200, training accuracy 1
 step 29400, training accuracy 1
-validation accuracy 0.994772
+validation accuracy 0.994389
 step 29600, training accuracy 1
 step 29800, training accuracy 1
 step 30000, training accuracy 1
-validation accuracy 0.995537
+validation accuracy 0.99439
 step 30200, training accuracy 1
 step 30400, training accuracy 1
-validation accuracy 0.995537
+validation accuracy 0.993879
 step 30600, training accuracy 1
 step 30800, training accuracy 1
 step 31000, training accuracy 1
-validation accuracy 0.995792
+validation accuracy 0.994262
 step 31200, training accuracy 1
 step 31400, training accuracy 1
-validation accuracy 0.995155
+validation accuracy 0.994007
 step 31600, training accuracy 1
 step 31800, training accuracy 1
 step 32000, training accuracy 1
-validation accuracy 0.995155
+validation accuracy 0.993369
 step 32200, training accuracy 1
 step 32400, training accuracy 1
-validation accuracy 0.994772
+validation accuracy 0.993242
 step 32600, training accuracy 1
 step 32800, training accuracy 1
 step 33000, training accuracy 1
-validation accuracy 0.995155
+validation accuracy 0.993369
 step 33200, training accuracy 1
 step 33400, training accuracy 1
-validation accuracy 0.99541
+validation accuracy 0.993879
 step 33600, training accuracy 1
 step 33800, training accuracy 1
 step 34000, training accuracy 1
-validation accuracy 0.995665
+validation accuracy 0.99439
 step 34200, training accuracy 1
 step 34400, training accuracy 1
-validation accuracy 0.995537
+validation accuracy 0.994262
 step 34600, training accuracy 1
 step 34800, training accuracy 1
 step 35000, training accuracy 1
-validation accuracy 0.995537
+validation accuracy 0.993879
 step 35200, training accuracy 1
 step 35400, training accuracy 1
-validation accuracy 0.995155
+validation accuracy 0.994007
 step 35600, training accuracy 1
 step 35800, training accuracy 1
 step 36000, training accuracy 1
-validation accuracy 0.994772
+validation accuracy 0.993624
 step 36200, training accuracy 1
 step 36400, training accuracy 1
-validation accuracy 0.995155
+validation accuracy 0.994134
 step 36600, training accuracy 1
 step 36800, training accuracy 1
 step 37000, training accuracy 1
-validation accuracy 0.99541
+validation accuracy 0.994645
 step 37200, training accuracy 1
 step 37400, training accuracy 1
-validation accuracy 0.99541
+validation accuracy 0.994772
 step 37600, training accuracy 1
 step 37800, training accuracy 1
 step 38000, training accuracy 1
-validation accuracy 0.995665
+validation accuracy 0.992987
 step 38200, training accuracy 1
 step 38400, training accuracy 1
-validation accuracy 0.995665
+validation accuracy 0.994645
 step 38600, training accuracy 1
 step 38800, training accuracy 1
 step 39000, training accuracy 1
-validation accuracy 0.995665
+validation accuracy 0.994645
 step 39200, training accuracy 1
 step 39400, training accuracy 1
-validation accuracy 0.99592
+validation accuracy 0.994772
 step 39600, training accuracy 1
 step 39800, training accuracy 1
 step 40000, training accuracy 1
-validation accuracy 0.995792
+validation accuracy 0.993879
 step 40200, training accuracy 1
 step 40400, training accuracy 1
-validation accuracy 0.995792
+validation accuracy 0.993879
 step 40600, training accuracy 1
 step 40800, training accuracy 1
 step 41000, training accuracy 1
-validation accuracy 0.996047
+validation accuracy 0.994645
 step 41200, training accuracy 1
 step 41400, training accuracy 1
-validation accuracy 0.995792
+validation accuracy 0.994134
 step 41600, training accuracy 1
 step 41800, training accuracy 1
 step 42000, training accuracy 1
-validation accuracy 0.995155
+validation accuracy 0.993752
 step 42200, training accuracy 1
 step 42400, training accuracy 1
-validation accuracy 0.995155
+validation accuracy 0.993114
 step 42600, training accuracy 1
 step 42800, training accuracy 1
 step 43000, training accuracy 1
-validation accuracy 0.995155
+validation accuracy 0.99439
 step 43200, training accuracy 1
 step 43400, training accuracy 1
-validation accuracy 0.995282
+validation accuracy 0.993752
 step 43600, training accuracy 1
 step 43800, training accuracy 1
 step 44000, training accuracy 1
-validation accuracy 0.995537
+validation accuracy 0.993114
 step 44200, training accuracy 1
 step 44400, training accuracy 1
-validation accuracy 0.994772
+validation accuracy 0.994517
 step 44600, training accuracy 1
 step 44800, training accuracy 1
 step 45000, training accuracy 1
-validation accuracy 0.9949
+validation accuracy 0.994262
 step 45200, training accuracy 1
 step 45400, training accuracy 1
-validation accuracy 0.995537
+validation accuracy 0.994134
 step 45600, training accuracy 1
 step 45800, training accuracy 1
 step 46000, training accuracy 1
-validation accuracy 0.995792
+validation accuracy 0.993752
 step 46200, training accuracy 1
 step 46400, training accuracy 1
-validation accuracy 0.995665
+validation accuracy 0.993752
 step 46600, training accuracy 1
 step 46800, training accuracy 1
 step 47000, training accuracy 1
-validation accuracy 0.995792
+validation accuracy 0.994134
 step 47200, training accuracy 1
 step 47400, training accuracy 1
-validation accuracy 0.995537
+validation accuracy 0.99439
 step 47600, training accuracy 1
 step 47800, training accuracy 1
 step 48000, training accuracy 1
-validation accuracy 0.995792
+validation accuracy 0.994517
 step 48200, training accuracy 1
 step 48400, training accuracy 1
-validation accuracy 0.99592
+validation accuracy 0.994645
 step 48600, training accuracy 1
 step 48800, training accuracy 1
 step 49000, training accuracy 1
-validation accuracy 0.99592
+validation accuracy 0.994645
 step 49200, training accuracy 1
 step 49400, training accuracy 1
-validation accuracy 0.996302
+validation accuracy 0.9949
 step 49600, training accuracy 1
 step 49800, training accuracy 1
-test accuracy 0.949169
-Training took 642.05 seconds
+test accuracy 0.939035
+Training took 655.10 seconds
 </pre>
 </div>
 </div>
@@ -27077,10 +27111,13 @@ Training took 642.05 seconds
 <li>epochs: 10,000, 100,000, and 200,000 steps / 31367 inputs</li>
 <li>hyperparameter:<ul>
 <li>learning rate: 1e-4 (avoid overshotting the bottom)</li>
-<li>Split training randomly set to 80% training and 20% validation set (avoid overfiting)</li>
+<li>Split training randomly set to 80% training and 20% validation set (avoid overfitting)</li>
 </ul>
 </li>
 </ul>
+<p>It would be great to implement early stop to prevent overfitting. It's not easy to set the condition for the early stop since the validation accuracy can fluctuate. One simple check is to count the increase instance of the accuracy by a certain numbers.</p>
+<p>For this instance the training is 50,000 steps with test accuracy at 0.939. The validation accuracy is slightly increasing, new image test accuracy at 0.57. Repeating more 50,000 iterations would increase the test accuracy, but it might already overfitting.</p>
+<p>Have tried training for 200,000 steps (ran the actual training cell 4 times) with test accuracy at 0.949 and new image test accuracy at 0.71.</p>
 
 </div>
 </div>
@@ -27111,9 +27148,14 @@ Training took 642.05 seconds
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The approach is from reading the class material and its references. There are also some good points from the class forum.</p>
-<p>First used the tow layer convolutinal archtect from TenserFlow deep-mnist-for-experts example and got a test accuacy around 0.9 in 24,000 steps.</p>
+<p>Convolutional neural networks (CNN) arrange the neurons in a 3-dimensional structure to take into accout the spatial relationships between different neurons with repsect to the original data, intead of having every neuron in each layer connect to all neurons in the next layer. By adding CNN layers, each successvie layer is capable of learning increaingly abstract features of the original image. CNN allows better generalization on vision problems. Weight sharing of CNN enables the translation invariance and reduce the model size.</p>
+<p>Softmax loss is used because 42 mutually exclusive labels for the prediction.</p>
+<p>Best results on MNIST-sized images (28x28) are usually in the 5x5 range on the first layer. The traffic sign images are 32 x 32, which is similar. Typical max pooling size is 2x2. Larger size will reduce the dimension of the images too fast and ignore too much information. A 50% dropout method is used to prevent overfitting.</p>
+<p>Another difference is the traffic sign images are colored, 3 RGB channels vs 1 grey channel. The MNIST image was training using one input channel for CNN. For training color images, there are basically two ways for the input channels: 1 grey vs 3 RGB. For the 1 channel input training, the color information, like red in stop signs will be reduce to grey information only, this might be an important information for the traffic signs. On the other hand, 1 channel input will increase the room under the same output depth for additional features to be learnt. Using 1 channel input vs 3 is like dimension reduction process: loss some information but increase other performances.</p>
+<p>This training will use 1 channel input frist, and plan to add 3 channel input training later if time permited. Reuse the tow layer convolutinal archtect from TenserFlow deep-mnist-for-experts example and got a test accuacy around 0.9 in 24,000 steps.</p>
 <p>Then tried split train data for 20% validation data. Got a test accuacy around 0.9 in 10,000 steps</p>
-<p>To get a better result, more experient could be done and take the best.</p>
+<p>To get a better result, more experient (like 3 RGB channel input) could be done and take the best.</p>
+<p>REF: <a href="https://en.wikipedia.org/wiki/Convolutional_neural_network">https://en.wikipedia.org/wiki/Convolutional_neural_network</a></p>
 
 </div>
 </div>
@@ -27186,7 +27228,7 @@ Training took 642.05 seconds
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">### Run the predictions here.</span>
@@ -27200,7 +27242,7 @@ Training took 642.05 seconds
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">misc</span>
@@ -33275,41 +33317,27 @@ LrnkkksuueSSSy5dSw4ec8kll1xyySWXXHLpWv4f6k0Le4DZQScAAAAASUVORK5CYII=
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[[ 0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000  0.000  1.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000]
- [ 0.000  0.000  1.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000]
- [ 0.000  0.000  1.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000]
- [ 0.000  0.000  0.000  1.000  0.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000]
- [ 0.000  0.000  0.000  1.000  0.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000]
- [ 0.000  0.000  0.000  0.000  0.000  1.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000]
- [ 0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000  0.000  1.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000  0.000
-   0.000  0.000  0.000]]
+<pre>[[ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.  0.  0.
+   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+   0.  0.  0.  0.  0.  0.  0.]
+ [ 0.  0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+   0.  0.  0.  0.  0.  0.  0.]
+ [ 0.  0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+   0.  0.  0.  0.  0.  0.  0.]
+ [ 0.  0.  0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+   0.  0.  0.  0.  0.  0.  0.]
+ [ 0.  0.  0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+   0.  0.  0.  0.  0.  0.  0.]
+ [ 0.  0.  0.  0.  0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+   0.  0.  0.  0.  0.  0.  0.]
+ [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.  0.  0.  0.
+   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.
+   0.  0.  0.  0.  0.  0.  0.]]
 </pre>
 </div>
 </div>
@@ -33320,7 +33348,7 @@ LrnkkksuueSSSy5dSw4ec8kll1xyySWXXHLpWv4f6k0Le4DZQScAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## Using the new images</span>
@@ -33340,7 +33368,7 @@ LrnkkksuueSSSy5dSw4ec8kll1xyySWXXHLpWv4f6k0Le4DZQScAAAAASUVORK5CYII=
 <span class="nb">print</span> <span class="p">(</span><span class="n">lab</span><span class="p">)</span>
 <span class="n">cor_pre</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">pre</span><span class="p">,</span> <span class="n">lab</span><span class="p">)</span>
 <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Predictions: &#39;</span><span class="p">,</span> <span class="n">cor_pre</span><span class="p">)</span>
-<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Acuracy: &#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">cor_pre</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Accuracy: &#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">cor_pre</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)))</span>
 
 <span class="c1"># print(&quot;test accuracy %g&quot;%accuracy.eval(feed_dict={</span>
 <span class="c1">#    x: X_test_new_set, y_: Y_test_new, keep_prob: 1.0}))</span>
@@ -33356,10 +33384,10 @@ LrnkkksuueSSSy5dSw4ec8kll1xyySWXXHLpWv4f6k0Le4DZQScAAAAASUVORK5CYII=
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[14  2  3  9  3  5 14]
+<pre>[14  2 12  9  2  5 14]
 [14  2  2  3  3  5 14]
-Predictions:  [ True  True False False  True  True  True]
-Acuracy:  0.714286
+Predictions:  [ True  True False False False  True  True]
+Accuracy:  0.571429
 </pre>
 </div>
 </div>
@@ -33393,8 +33421,8 @@ Acuracy:  0.714286
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The model performs worse on the capture pitures, comparing to the testing on the dataset.</p>
-<p>The acurace is only 0.71 compared to testing acruracy 0.94.</p>
+<p>The model performs worse on the capture pictures, comparing to the testing on the dataset.</p>
+<p>The accuracy is only 0.57 compared to testing acruracy 0.94.</p>
 
 </div>
 </div>
@@ -33435,7 +33463,7 @@ Acuracy:  0.714286
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># print (pre_sm)</span>
@@ -33462,22 +33490,22 @@ Acuracy:  0.714286
 <pre>Top 5 guess:  
  [[ 1.000  0.000  0.000  0.000  0.000]
  [ 1.000  0.000  0.000  0.000  0.000]
- [ 0.514  0.485  0.001  0.000  0.000]
- [ 1.000  0.000  0.000  0.000  0.000]
- [ 0.904  0.069  0.027  0.000  0.000]
+ [ 0.549  0.401  0.041  0.009  0.000]
+ [ 0.993  0.006  0.001  0.000  0.000]
+ [ 0.995  0.003  0.001  0.000  0.000]
  [ 1.000  0.000  0.000  0.000  0.000]
  [ 1.000  0.000  0.000  0.000  0.000]]
 Top 5 predict: 
- [[14 34  2 33  1]
- [ 2 37 39  1 31]
- [ 3  2 38 13 12]
- [ 9 23 10 37 17]
- [ 3 38  2  5 13]
- [ 5  1  2  3  6]
- [14  4 33  1 17]]
-Predict:  [14  2  3  9  3  5 14]
+ [[14  4 17 39 38]
+ [ 2  1 31 39 40]
+ [12  2  3 38 25]
+ [ 9 37  2 10 22]
+ [ 2 36  3 34  5]
+ [ 5  1  2  0  6]
+ [14  4 17 39 13]]
+Predict:  [14  2 12  9  2  5 14]
 Label  :  [14  2  2  3  3  5 14]
-Predictions:  [ True  True False False  True  True  True]
+Predictions:  [ True  True False False False  True  True]
 </pre>
 </div>
 </div>
@@ -33492,12 +33520,12 @@ Predictions:  [ True  True False False  True  True  True]
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>The preditions are certain: image number 0, 1, 3, 4, 5 and 6.</li>
-<li>The preditions are uncertain: image number 2</li>
-<li>The correct prediction appear in the top k with wrong preditions:<ul>
-<li>Not in the top k: image nmuber 3 </li>
-<li>In the top k: image number 2</li>
-<li>The prediction not really appears in top k (only 1/2)</li>
+<li>The predictions are certain: image number 0, 1, 3, 4, 5 and 6.</li>
+<li>The predictions are uncertain: image number 2</li>
+<li>The correct prediction appear in the top k with wrong predictions:<ul>
+<li>Not in the top k: image number 3 </li>
+<li>In the top k: image number 2 and 4</li>
+<li>The prediction not really appears in top k (only 2/3)</li>
 </ul>
 </li>
 </ul>
@@ -33507,7 +33535,7 @@ Predictions:  [ True  True False False  True  True  True]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">si</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -33545,7 +33573,7 @@ Predictions:  [ True  True False False  True  True  True]
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>An interface for newly acquired images should be put in a specified directory. The specified directory could be URI/URL format to be anywhere in the internet.</p>
 <p>The interface will upload the images and go through labeling (could be manual) and pre-processing so that the data can be consume by the training model. The pre-proceesed data will be saved in the pre-defined location for training model to retrieve.</p>
-<p>The training model can access the pre-definded location to train the new images. The train model usually be saved in checkpoint files using tf.train.Saver and retrieved for traing the new images.</p>
+<p>The training model can access the pre-defined location to train the new images. The train model usually be saved in checkpoint files using tf.train.Saver and retrieved for training the new images.</p>
 
 </div>
 </div>
